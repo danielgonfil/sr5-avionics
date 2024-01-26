@@ -1,11 +1,7 @@
-from machine import Pin
-import utime
-led = Pin(13, Pin.OUT)
-timer = Timer()
+import machine, utime
 
-def blink():
+led = machine.Pin(13, machine.Pin.OUT)
+
+for _ in range(6):
     led.toggle()
-
-while True:
-    blink()
-    utime.sleep(1000)
+    utime.sleep(1)
