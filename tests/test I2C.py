@@ -18,11 +18,3 @@ for device in devices:
     print('Decimal address:', device, ", Hex address: ", hex(device), "\t\t")
         
 utime.sleep(1)
-
-# # # Set up the MPU6050 class 
-# mpu = mpu6050_2.MPU6050(i2c)
-
-# # utime.sleep_ms(100)
-
-# # wake up the MPU6050 from sleep
-# mpu.wake()
