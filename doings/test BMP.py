@@ -1,13 +1,9 @@
-"""
-https://electrocredible.com/bmp280-raspberry-pi-pico-micropython-guide/
-"""
-
 from machine import Pin, I2C
-from bmp280 import *
+from BMP import *
 import time
 
-sdaPIN = Pin(0)
-sclPIN = Pin(1)
+sdaPIN = Pin(20)
+sclPIN = Pin(21)
 bus = I2C(0,sda=sdaPIN, scl=sclPIN, freq=400000)
 bmp = BMP280(bus)
 

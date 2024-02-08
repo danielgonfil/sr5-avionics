@@ -1,10 +1,6 @@
-"""
-https://www.digikey.ch/en/maker/projects/raspberry-pi-pico-rp2040-sd-card-example-with-micropython-and-cc/e472c7f578734bfd96d437e68e670050
-"""
-
 import machine
-import sdcard as sdcard
-import uos
+import SD as sdcard
+import os
 
 # Assign chip select (CS) pin (and start it high)
 cs = machine.Pin(9, machine.Pin.OUT)
@@ -19,20 +15,27 @@ spi = machine.SPI(1,
                   sck=machine.Pin(10),
                   mosi=machine.Pin(11),
                   miso=machine.Pin(8))
+print("1")
 
 # Initialize SD card
 sd = sdcard.SDCard(spi, cs)
 
-# # Mount filesystem
-# vfs = uos.VfsFat(sd)
-# uos.mount(vfs, "/sd")
+# Mount filesystem
+vfs = os.VfsFat(sd)
+os.mount(sd, '/')
+print(os.listdir('/sd'))
 
-# # Create a file and write something to it
-# with open("/sd/test01.txt", "w") as file:
-#     file.write("Hello, SD World!\r\n")
-#     file.write("This is a test\r\n")
 
-# # Open the file we just created and read from it
-# with open("/sd/test01.txt", "r") as file:
-#     data = file.read()
-#     print(data)
+# writting file
+file = open("/sd/sample.txt","w")
+for i in range(20):
+    file.write("Sample text = %s\r\n" % i)
+file.close()
+
+# reading file
+file = open("/sd/sample.txt", "r")
+if file != 0:
+    print("Reading from SD card")
+    read_data = file.read()
+    print (read_data)
+file.close()
