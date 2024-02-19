@@ -17,16 +17,16 @@ spi = machine.SPI(1,
                   miso=machine.Pin(8))
 
 # Initialize SD card
-sd = sdcard.SDCard(spi, cs)
-sd.hello()
+SD = sdcard.SDCard(spi, cs)
+SD.hello()
 
 # Mount filesystem
-vfs = os.VfsFat(sd)
+vfs = os.VfsFat(SD)
 try:
-    os.mount(sd, '/sd')
+    os.mount(SD, '/sd')
     print(os.listdir('/sd'))
 except:
-    os.mount(sd, '/')
+    os.mount(SD, '/')
     print(os.listdir('/'))
 
 
