@@ -1,5 +1,5 @@
 import machine
-import SD as sdcard
+import sdcard
 import os
 
 # Assign chip select (CS) pin (and start it high)
@@ -15,15 +15,19 @@ spi = machine.SPI(1,
                   sck=machine.Pin(10),
                   mosi=machine.Pin(11),
                   miso=machine.Pin(8))
-print("1")
 
 # Initialize SD card
 sd = sdcard.SDCard(spi, cs)
+sd.hello()
 
 # Mount filesystem
 vfs = os.VfsFat(sd)
-os.mount(sd, '/')
-print(os.listdir('/sd'))
+try:
+    os.mount(sd, '/sd')
+    print(os.listdir('/sd'))
+except:
+    os.mount(sd, '/')
+    print(os.listdir('/'))
 
 
 # writting file

@@ -1,7 +1,7 @@
 import utime
-from SERVO import Servo
+import servo
  
-s1 = Servo(0)       # Servo pin is connected to GP0
+s1 = servo.Servo(0)       # Servo pin is connected to GP0
  
 def servo_Map(x, in_min, in_max, out_min, out_max):
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
