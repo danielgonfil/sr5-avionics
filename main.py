@@ -4,6 +4,7 @@ all systems integrated together here
 
 from machine import Pin, I2C, SPI
 import inter, mpu, sdcard, servo
+import utime
 
 # interfaces
 led1 = inter.LED(25)
@@ -24,11 +25,11 @@ SD = sdcard.SDCard(SPI(1,
                   Pin(9, Pin.OUT))
 
 # state:
-#      state  |  id
-#      idle   |   0
-#      calib  |   1
-#       run   |   2
-#      error  |   3
+#   state  |  id
+#   idle   |   0
+#   calib  |   1
+#    run   |   2
+#   error  |   3
 
 STATE = 0
 
