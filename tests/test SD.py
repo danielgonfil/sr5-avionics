@@ -18,7 +18,6 @@ spi = machine.SPI(1,
 
 # Initialize SD card
 SD = sdcard.SDCard(spi, cs)
-SD.hello()
 
 # Mount filesystem
 vfs = os.VfsFat(SD)

@@ -1,20 +1,15 @@
 import machine
-import time, utime
-# import mpu6050_2
+sda=machine.Pin(20)
+scl=machine.Pin(21)
+i2c=machine.I2C(0,sda=sda, scl=scl, freq=400000)
 
-# Set up the I2C interface
-i2c = machine.I2C(1,    sda=machine.Pin(14, pull=machine.Pin.PULL_UP), 
-                        scl=machine.Pin(15, pull=machine.Pin.PULL_UP))
-
+print('Scan i2c bus...')
 devices = i2c.scan()
-device_count = len(devices)
 
-if device_count == 0:
-    print('No i2c device found.')
+if len(devices) == 0:
+    print("No i2c device !")
 else:
-    print(device_count, 'devices found.')
+    print('i2c devices found:',len(devices))
 
 for device in devices:
-    print('Decimal address:', device, ", Hex address: ", hex(device), "\t\t")
-        
-utime.sleep(1)
+    print("Decimal address: ",device," | Hexa address: ",hex(device))
