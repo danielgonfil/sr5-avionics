@@ -21,8 +21,9 @@ while True:
                 msg = b.decode('utf-8')
                 print(msg)
                 utime.sleep(1)
-        except Exception as e:
-            print(e)
+            except Exception as e:
+                print(e)
+            flag = 0
             
 
 
