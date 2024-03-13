@@ -8,7 +8,8 @@ print (uart)
 
 b = None
 msg = "Hello there!"
-flag = 0
+flag = 1
+
 while True:	
     if flag == 0:
         uart.write("Hello there!")
