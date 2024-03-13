@@ -11,20 +11,20 @@ msg = "Hello there!"
 flag = 0
 
 while True:	
-    if flag == 0:
-        uart.write("Hello there!")
-        print("Hello there!")
-        flag = 1
+    if input("Send message:"):
+        uart.write(msg)
+        # print("Hello not there!")
+        msg = 1
+        
     else:
-        if uart.any():
-            b = uart.read()
-            try:
-                msg = b.decode('utf-8')
-                print(msg)
-                utime.sleep(1)
-            except Exception as e:
-                print(e)
-            flag = 0
-            
+        b = uart.read()
+        try:
+            msg = b.decode('utf-8')
+            print("Received message:", msg)
+            utime.sleep(1)
+        except Exception as e:
+            print(e)
+        msg = 0
+        
 
 
