@@ -15,12 +15,14 @@ while True:
         print("Hello there!")
         flag = 1
     else:
-        try:
+        if uart.any():
             b = uart.read()
-            msg = b.decode('utf-8')
-            print(msg)
-            utime.sleep(1)
+            try:
+                msg = b.decode('utf-8')
+                print(msg)
+                utime.sleep(1)
         except Exception as e:
             print(e)
             
+
 
