@@ -1,6 +1,6 @@
 # import the required libraries
 from mpu import *
-from mpu.vector import *
+from mpu.array import *
 
 from machine import Pin, I2C, SPI, UART
 import utime
