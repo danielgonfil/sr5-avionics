@@ -40,11 +40,26 @@ def altitude(pressure, temperature = 0):
 
 ps = 0
 
+stored_values = []
+n_stored_values = 100
+leading_altitude = 0
+
+APOGEE_DROP_THRESHOLD = 0.5 # meters
+
 while True:
-    for _ in range(100):
-        pressure = bmp.read()["pressure"]
-        ps += altitude(pressure)
-        utime.sleep_ms(1)
-    print(ps/100)
-    ps = 0
+    stored_values.append(altitude(bmp.read()["pressure"]))
+    if len(stored_values) == n_stored_values:
+        stored_values.pop(0)
+    
+    current_altitude = sum(stored_values)/n_stored_values
+    
+    # detecting apogee: drop in altitude
+    if current_altitude > leading_altitude:
+        leading_altitude = current_altitude
+    
+    if leading_altitude - current_altitude > APOGEE_DROP_THRESHOLD:
+        print("Apogee detected at altitude: ", leading_altitude)
+        break
+
+    print(leading_altitude, current_altitude)
     
