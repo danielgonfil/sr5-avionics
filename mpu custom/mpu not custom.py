@@ -1,6 +1,6 @@
 from machine import Pin, I2C
 import time
- 
+
 PWR_MGMT_1 = 0x6B
 SMPLRT_DIV = 0x19
 CONFIG = 0x1A
