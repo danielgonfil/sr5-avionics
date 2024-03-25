@@ -1,8 +1,7 @@
+# Author David Stenwall (david at stenwall.io)
 from micropython import const
 from ustruct import unpack as unp
 import utime 
-
-# Author David Stenwall (david at stenwall.io)
 
 # Power Modes
 BMP280_POWER_SLEEP = const(0)
